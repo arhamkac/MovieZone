@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
+// import GenreList from './GenreList';
+import { Link } from 'react-router-dom';
 
 const Genres =() => {
 const [genre, setGenre] = useState([]);
@@ -19,13 +21,18 @@ useEffect(() => {
 },[]);
   return (
     <div className='bg-[#06202B] p-5 h-screen w-screen'>
-      <h1 className='text-5xl justify-center items-center flex py-6'>Genre List</h1>
-      <div className="grid grid-cols-3 gap-5">
-        {genre.map((type)=>(
-          <div key={type.id} className='bg-gray-800 p-4 rounded-lg'>
-            <button className='text-white text-xl cursor-pointer' >
-            {type.name}</button>
-          </div>
+      <h1 className='text-5xl justify-center items-center flex py-6'>Genre List For Movies</h1>
+      <div className='grid grid-cols-3 gap-5'>
+        {genre.map((type) => (
+          <Link
+            key={type.id}
+            to={`/genres/${type.id}/${type.name}`}
+            state={{ genreName: type.name }}
+          >
+            <div className='bg-gray-800 p-4 rounded-lg hover:bg-gray-700 cursor-pointer'>
+              <h2 className='text-white text-xl'>{type.name}</h2>
+            </div>
+          </Link>
         ))}
     </div>
     </div>
