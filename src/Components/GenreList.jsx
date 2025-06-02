@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { useMovieDetails } from './MovieDetailsContext';
+import { useNavigate } from 'react-router-dom';
 
 export const GenreList =() => {
   const [movies, setMovies] = useState([]);
   const [page,setPage]=useState(1);
   const { genreId,genre_name } = useParams(); 
+  const { setSelectedMovie, fetchMovieDetails } = useMovieDetails();
+  const navigate = useNavigate();
 
   useEffect(()=>{
   const fetchMovieByGenres=async()=>{
@@ -20,13 +24,20 @@ export const GenreList =() => {
   };
   fetchMovieByGenres();
 },[genreId,page])
+
+  const handleClick=(movie)=>{
+    setSelectedMovie(movie);
+    fetchMovieDetails(movie.id);
+    navigate(`/movie/${movie.id}`);
+  }
+
   return (
     <div>
       <div className='bg-[#06202B] p-5'>
       <h1 className='text-5xl justify-center items-center flex py-6'>{genre_name} Movies</h1>
       <div className="grid grid-cols-5 gap-5">
         {movies.map((movie)=>(
-          <div key={movie.id} className='bg-gray-800 p-4 rounded-lg'>
+          <div key={movie.id} className='bg-gray-800 p-4 rounded-lg cursor-pointer' onClick={() => handleClick(movie)}>
             <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} className='rounded-lg' />
             <h2 className='text-white text-xl'>{movie.title}</h2>
             <p className='text-gray-400'>{movie.release_date}</p>

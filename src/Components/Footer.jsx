@@ -67,14 +67,14 @@ function Footer() {
             <span className="ml-3 text-xl">MovieZone</span>
           </a>
           <p className="text-sm text-gray-400 sm:ml-6 sm:mt-0 mt-4">
-            © 2020 MovieZone —
+            © 2025 MovieZone —
             <a
               href="https://twitter.com/knyttneve"
               rel="noopener noreferrer"
               className="text-gray-300 ml-1"
               target="_blank"
             >
-              @arhamkachhara
+              @arhamkac
             </a>
           </p>
           <span className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
