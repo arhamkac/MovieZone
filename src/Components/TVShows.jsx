@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const TVShows =() => {
 const [shows, setShows] = useState([]);
@@ -7,6 +8,7 @@ const BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY = "2d146261b6eec38b5fdeeb844bfc1cbd";
 const ENDPOINT = '/tv/popular';
 const [page,setPage]=useState(1);
+const navigate = useNavigate();
 
 useEffect(() => {
   const fetchShows=async()=>{
@@ -27,12 +29,17 @@ useEffect(() => {
   }
   fetchShows();
 },[page]);
+
+  const handleClick=(id)=>{
+    navigate(`/tv/${id}`);
+  }
+
   return (
     <div className='bg-[#06202B] p-5'>
       <h1 className='text-5xl justify-center items-center flex py-6'>Popular TV Shows</h1>
       <div className="grid grid-cols-5 gap-5">
         {shows.map((show)=>(
-          <div key={show.id} className='bg-gray-800 p-4 rounded-lg'>
+          <div key={show.id} className='bg-gray-800 p-4 rounded-lg cursor-pointer hover:scale-105 transition-transform' onClick={()=>handleClick(show.id)}>
             <img src={`https://image.tmdb.org/t/p/w500${show.poster_path}`} alt={show.title} className='rounded-lg' />
             <h2 className='text-white text-xl'>{show.name}</h2>
             <p className='text-gray-400'>{show.first_air_date}</p>

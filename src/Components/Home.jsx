@@ -10,6 +10,7 @@ import Upcoming from './Upcoming';
 import Genres from './Genres';
 import { GenreList } from './GenreList';
 import MovieDetails from './MovieDetails';
+import TVShowInfo from './TVShowInfo';
 
 function Home() {
 
@@ -24,6 +25,7 @@ function Home() {
       <Route path="/upcoming" element={<Upcoming />} />
       <Route path="/genres/:genreId/:genre_name" element={<GenreList />} />
       <Route path="/movie/:id" element={<MovieDetails />} />
+      <Route path="/tv/:id" element={<TVShowInfo />} />
     </Routes>
     <Footer />
     </div>

@@ -42,7 +42,7 @@ const handleClick=(movie)=>{
       <h1 className='text-5xl justify-center items-center flex py-6'>Top Rated Movies</h1>
       <div className="grid grid-cols-5 gap-5">
         {movies.map((movie)=>(
-          <div key={movie.id} className='bg-gray-800 p-4 rounded-lg cursor-pointer' onClick={() => handleClick(movie)}>
+          <div key={movie.id} className='bg-gray-800 p-4 rounded-lg cursor-pointer hover:scale-105 transition-transform' onClick={() => handleClick(movie)}>
             <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} className='rounded-lg' />
             <h2 className='text-white text-xl'>{movie.title}</h2>
             <p className='text-gray-400'>{movie.release_date}</p>
