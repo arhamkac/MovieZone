@@ -61,7 +61,7 @@ const handleClick=(movie)=>{
             <p className='text-yellow-500'>Rating: {movie.vote_average}</p>
           </div>
         ))}
-        <div className='flex flex-col items-center justify-center gap-4 mt-10 text-white'>
+        <div className='flex flex-col items-center justify-center gap-4 mt-5 ml-130 w-full text-white'>
         <p className='text-2xl'>Page: {page < 1 ? 1 : page}</p>
         <div className='flex gap-5'>
           <button onClick={() => setPage(page + 1)} className='bg-blue-500 text-white p-2 px-4 rounded-lg cursor-pointer'>Load Next</button>
