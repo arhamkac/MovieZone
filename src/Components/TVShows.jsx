@@ -34,6 +34,14 @@ useEffect(() => {
     navigate(`/tv/${id}`);
   }
 
+  const formatDat = (dateString) => {
+  const date = new Date(dateString);
+  const day = date.getDate();
+  const month = date.toLocaleString('default', { month: 'long' });
+  const year = date.getFullYear();
+  return `${day} ${month} ${year}`;
+};
+
   return (
     <div className='bg-[#06202B] p-5'>
       <h1 className='text-5xl justify-center items-center flex py-6'>Popular TV Shows</h1>
@@ -42,16 +50,18 @@ useEffect(() => {
           <div key={show.id} className='bg-gray-800 p-4 rounded-lg cursor-pointer hover:scale-105 transition-transform' onClick={()=>handleClick(show.id)}>
             <img src={`https://image.tmdb.org/t/p/w500${show.poster_path}`} alt={show.title} className='rounded-lg' />
             <h2 className='text-white text-xl'>{show.name}</h2>
-            <p className='text-gray-400'>{show.first_air_date}</p>
+            <p className='text-gray-400'>From-{formatDat(show.first_air_date)}</p>
             <p className='text-gray-400'>{show.overview}</p>
             <p className='text-yellow-500'>Rating: {show.vote_average}</p>
           </div>
         ))}
-        <div className='text-2xl grid grid-cols-3 gap-30 items-center w-full justify-center whitespace-nowrap'>
-        <p>Page:{page<1 ? 1 :page}</p>
-        <button onClick={() => setPage(page + 1)} className='bg-blue-500 text-white p-2 rounded-lg cursor-pointer w-fit'>Load Next</button>
-        <button onClick={() => setPage(page - 1)} className='bg-blue-500 text-white p-2 rounded-lg cursor-pointer w-fit'>Load Previous</button>
+        <div className='flex flex-col items-center justify-center gap-4 mt-5 ml-130 w-full text-white'>
+        <p className='text-2xl'>Page: {page < 1 ? 1 : page}</p>
+        <div className='flex gap-5'>
+          <button onClick={() => setPage(page + 1)} className='bg-blue-500 text-white p-2 px-4 rounded-lg cursor-pointer'>Load Next</button>
+          <button onClick={() => setPage(page - 1)} disabled={page <= 1} className='bg-blue-500 text-white p-2 px-4 rounded-lg cursor-pointer disabled:opacity-50'>Load Previous</button>
         </div>
+      </div>
     </div>
     </div>
   );
