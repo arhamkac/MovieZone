@@ -62,7 +62,7 @@ const UpcomingShows = () => {
       <div className='flex flex-col items-center justify-center gap-4 mt-10 text-white'>
         <p className='text-2xl'>Page: {page < 1 ? 1 : page}</p>
         <div className='flex gap-5'>
-          <button onClick={() => setPage(page + 1)} className='bg-blue-500 text-white p-2 px-4 rounded-lg cursor-pointer w-fit'>Load Next</button>
+          <button onClick={() => setPage(page + 1)} className='bg-blue-500 text-white p-2 px-4 rounded-lg cursor-pointer'>Load Next</button>
           <button onClick={() => setPage(page - 1)} disabled={page <= 1} className='bg-blue-500 text-white p-2 px-4 rounded-lg cursor-pointer disabled:opacity-50'>Load Previous</button>
         </div>
       </div>
